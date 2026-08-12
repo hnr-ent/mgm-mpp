@@ -1,3 +1,20 @@
+const PRESERVE_WORDS = new Set([
+    "NBA",
+    "NHL",
+    "MLB",
+    "NFL",
+    "VIP",
+    "WNBA",
+    "NCAA",
+    "MMA",
+    "UFC",
+    "US",
+    "NJ",
+    "PA",
+    "MI",
+    "ON"
+]);
+
 // ================================
 // Normalize Text
 // ================================
