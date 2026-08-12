@@ -1,0 +1,120 @@
+/* GENERAL */
+ html {
+     font-family: "Comfortaa", sans-serif;
+     font-size: 62.5%;
+     box-sizing: border-box;
+}
+
+ body {
+    display: flex;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    background: rgb(54, 74, 111);
+    color: white;
+    
+    input {
+        /* min-width: 3rem;
+         field-sizing: content;
+         max-width: 43rem;
+        */
+        width: 48rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 2rem;
+        border-radius: .5rem;
+        padding: 0 1rem;
+        text-align: center;
+    }
+    
+    textarea {
+        
+        width: 50rem;
+        border-radius: .5rem;
+        height: 20rem;
+        resize: none;
+    }
+}
+
+.button-clear {
+    border: none;
+    background: none;
+    color: white;
+    font-size: 2.5rem;
+    transform: translateY(6px);
+    
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.unselect {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+.top-bx {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: fit-content;
+}
+
+.button-bx {
+    display: flex;
+    gap: 2rem;
+    margin: 0 auto;
+    
+    button {
+        padding: 1rem 0;
+        border-radius: 1rem;
+        width: 10rem;
+        
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.label-input-bx, .image-bx, .date-bx, .url-bx {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.bottom-bx {
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+ .title-bx,
+ .hiw-bx {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+}
+
+ .label-arrow {
+    margin-bottom: 1rem;
+}
+
+#promoHubTitle-output,
+ #landingPageTitle-output,
+ #image-output,
+ #date-output,
+ #url-output  {
+    margin-top: 1.5rem;
+}

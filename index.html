@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+    <title>MPP</title>
+</head>
+<body>
+    <h1>MPP</h1>
+
+    <div class="top-bx">
+        <textarea name="finalcopy" id="finalcopy"></textarea>
+        <div class="button-bx">
+            <button id="extractBtn">Extract</button>
+            <button id="clearBtn">Clear</button>
+            <!-- <button id="capCase">Cap Case</button> -->
+        </div>
+    </div>
+    
+    <div class="bottom-bx">
+        
+        <div class="title-bx">
+            <div class="label-input-bx">
+                <label for="titleOne">PromotionTitle <span class="unselect">(Hub > H1)</span></label>
+                <input type="text" id="promoHubTitle-output" readonly>    
+            </div>
+            <div class="label-input-bx">
+                <label for="titleTwo">PromotionTitle <span class="unselect">(Promo Landing)</span></label>
+                <input type="text" id="landingPageTitle-output" readonly>
+            </div>
+        </div>
+
+        <div class="image-bx">
+            <label for="image">Image</label>
+            <input type="text" id="image-output" readonly>
+        </div>
+
+        <div class="date-bx">
+            <label for="promoDate">ImageHeadline <span class="unselect">(Promo Date)</span></label>
+            <input type="text" id="date-output" readonly>
+        </div>
+
+        <div class="hiw-bx">
+            <label for="hiw">How It Works</label>
+            <textarea name="hiw" id="hiw-output"></textarea>
+        </div>
+
+        <div class="url-bx">
+            <label for="tix-url">Ticket URL</label>
+            <input for="url" id="url-output" readonly></label>
+        </div>
+
+
+    </div>
+    
+    
+    
+</body>
+<script src="/scripts/config.js"></script>
+<script src="/scripts/script.js"></script>
+<script src="/scripts/upper.js"></script>
+</html>
