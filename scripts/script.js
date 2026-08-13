@@ -175,47 +175,49 @@ function extractField(lines, config) {
 // ================================
 
 function extractAll() {
+    const finalCopyElement = document.querySelector("#finalcopy");
 
-    const text = normalizeText(
-        document.querySelector("#finalcopy").value
-    );
+    if (!finalCopyElement) {
+        console.error('Could not find #finalcopy.');
+        return;
+    }
+
+    const text = normalizeText(finalCopyElement.value);
 
     const lines = text
         .split("\n")
         .map(line => line.trim());
 
     Object.values(FIELD_CONFIG).forEach(config => {
-
         let value = "";
 
-if (config.pattern) {
-    value = extractPattern(text, config);
-} else {
-    value = extractField(lines, config);
-}
+        if (config.pattern) {
+            value = extractPattern(text, config);
+        } else {
+            value = extractField(lines, config);
+        }
 
-        const output = document.querySelector(
-            config.output
-        );
+        const output = document.querySelector(config.output);
 
         if (output) {
+            let finalValue = value;
 
-    let finalValue = value;
+            if (config.capitalize && finalValue) {
+                finalValue = toCapitalCase(finalValue);
+            }
 
-    if (
-        config.capitalize &&
-        finalValue
-    ) {
-        finalValue = toCapitalCase(finalValue);
-    }
-
-    output.value = finalValue;
-}
-
+            output.value = finalValue;
+        }
     });
 
-}
+    // Generate the How It Works snippet after extraction
+    if (hiwOutput) {
+        hiwOutput.value = buildHowItWorks(text);
+    }
 
+    // Refresh the final URL because #ticket-url was populated above.
+    updateUrl();
+}
 function extractPattern(text, config) {
 
     const match = text.match(config.pattern);
@@ -320,4 +322,110 @@ function updateUrl() {
     }
 
     urlOutput.value = url;
+}
+
+
+// HOW IT WORKS
+
+const finalCopy = document.getElementById('finalcopy');
+const hiwOutput = document.getElementById('hiw-output');
+
+// hiwOutput.value = buildHowItWorks(finalCopy.value);
+
+function buildHowItWorks(text) {
+    if (!text) {
+        return "";
+    }
+
+    const lines = text
+        .split("\n")
+        .map(line => line.trim());
+
+    const descriptionLines = [];
+    const participationSteps = [];
+
+    let inDescription = false;
+    let inParticipation = false;
+
+    for (const line of lines) {
+        if (!line) {
+            continue;
+        }
+
+        const descriptionMatch = line.match(
+            /^(?:promotion|promotional)\s+description(?:\s*\[[^\]]*\])?\s*:?\s*(.*)$/i
+        );
+
+        if (descriptionMatch) {
+            inDescription = true;
+            inParticipation = false;
+
+            const sameLineDescription = descriptionMatch[1].trim();
+
+            if (sameLineDescription) {
+                descriptionLines.push(sameLineDescription);
+            }
+
+            continue;
+        }
+
+if (/^how\s+to\s+participate\b/i.test(line)) {
+    inDescription = false;
+    inParticipation = true;
+    continue;
+}
+
+        if (/^(terms(?:\s*(?:&|and)\s*conditions)?|official rules|additional terms)\b/i.test(line)) {
+            break;
+        }
+
+        if (inDescription) {
+            descriptionLines.push(line);
+            continue;
+        }
+
+        if (inParticipation) {
+            const stepMatch = line.match(/^\d+\.\s*(.+)$/);
+
+            if (stepMatch) {
+                participationSteps.push(stepMatch[1].trim());
+            }
+        }
+    }
+
+    const outputParts = [];
+
+    descriptionLines.forEach(description => {
+        outputParts.push(`<p>${escapeHtml(description)}</p>`);
+    });
+
+    if (participationSteps.length) {
+        outputParts.push(`<p><strong>How It Works:</strong></p>`);
+        outputParts.push(`<ul>`);
+
+        participationSteps.forEach(step => {
+            outputParts.push(`<li>${escapeHtml(step)}</li>`);
+        });
+
+        outputParts.push(`</ul>`);
+    }
+
+    /*
+     * Only add the footer if at least one relevant section
+     * was successfully extracted.
+     */
+    if (descriptionLines.length || participationSteps.length) {
+        outputParts.push(
+            `<p><em>Please make sure to read our full Terms and Conditions before participating in this Promotion.</em></p>`
+        );
+    }
+
+    return outputParts.join("\n");
+}
+
+function escapeHtml(value) {
+    return value
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
 }
