@@ -6,7 +6,7 @@
 
 ###
 
-<h3 align="left">## What It Does/How To Use:</h3>
+<h3 align="left">What It Does/How To Use:</h3>
 
 ###
 
@@ -19,10 +19,6 @@
 ###
 
 <p align="left">Once the document content, ticket url, and creative path are placed, hit the Extract button and the input boxes will populate texts.<br>Compare your own work against this tool. If it matches, it's almost certainly that your work is 99% correct.</p>
-
-###
-
-<h3 align="left">Hello World!!</h3>
 
 ###
 
