@@ -1,6 +1,6 @@
 const FIELD_CONFIG = {
     ticketURL: {
-    output: "#url-output",
+    output: "#ticket-url",
     capitalize: false,
     sections: [
         "TICKET URL",
@@ -77,5 +77,26 @@ creativePath: {
             /PROMO DATES?/i,
             /^DATES?\b/i
         ]
+    }
+};
+
+
+
+// DROP DOWN CONFIG
+
+const BRANDS = {
+    mgm: {
+        name: 'MGM',
+        color: '#d4b962',
+        domain: 'betmgm.com',
+        canadaDomain: 'betmgm.ca',
+        canadaStates: ['ON', 'AB'],
+        states: ['NJ', 'PA', 'MI', 'WV', 'ON', 'AB']
+    },
+    borg: {
+        name: 'Borg',
+        color: '#1f00ae',
+        domain: 'borgataonline.com',
+        states: ['NJ', 'PA']
     }
 };

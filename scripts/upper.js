@@ -3,10 +3,23 @@ function toCapitalCase(text) {
         .toLowerCase()
         .split(" ")
         .filter(word => word.length)
-        .map(word =>
-            word.charAt(0).toUpperCase() +
-            word.slice(1)
-        )
+        .map(word => {
+            const parts = word.match(/^([^A-Za-z0-9]*)([A-Za-z0-9']+)([^A-Za-z0-9]*)$/);
+
+            if (!parts) return word;
+
+            const [, pre, core, post] = parts;
+            const upperCore = core.toUpperCase();
+
+            if (typeof PRESERVE_WORDS !== "undefined") {
+                const preserved = Array.from(PRESERVE_WORDS).find(p => p.toUpperCase() === upperCore);
+                if (preserved) {
+                    return pre + preserved + post;
+                }
+            }
+
+            return pre + (core.charAt(0).toUpperCase() + core.slice(1)) + post;
+        })
         .join(" ");
 }
 

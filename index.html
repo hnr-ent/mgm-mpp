@@ -50,7 +50,26 @@
         </div>
 
         <div class="url-bx">
+            <div class="state-brand-bx">
+                <select name="brand" id="brand">
+                    <option value="null">Select Brand</option>
+                    <option value="mgm" id="mgm">BetMGM</option>
+                    <option value="borg" id="borg">Borgata</option>
+                </select>
+                <select name="state" id="state" disabled>
+                    <option value="null">Select State</option>
+                    <option value="stateNJ" id="stateNJ">NJ</option>
+                    <option value="statePA" id="statePA">PA</option>
+                    <option value="stateMI" id="stateMI">MI</option>
+                    <option value="stateWV" id="stateWV">WV</option>
+                    <option value="stateON" id="stateON">ON</option>
+                    <option value="stateAB" id="stateAB">AB</option>
+                </select>
+                <input type="text" id="brand-color" readonly>
+
+            </div>
             <label for="tix-url">Ticket URL</label>
+            <input for="url" id="ticket-url" readonly type="hidden"></label>
             <input for="url" id="url-output" readonly></label>
         </div>
 

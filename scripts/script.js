@@ -3,6 +3,7 @@ const PRESERVE_WORDS = new Set([
     "NHL",
     "MLB",
     "NFL",
+    "VIPs",
     "VIP",
     "WNBA",
     "NCAA",
@@ -12,8 +13,13 @@ const PRESERVE_WORDS = new Set([
     "NJ",
     "PA",
     "MI",
-    "ON"
+    "ON",
+    "RPG",
+    "RPGs"
 ]);
+
+
+
 
 // ================================
 // Normalize Text
@@ -231,9 +237,87 @@ function extractPattern(text, config) {
 }
 
 // ================================
-// Event Listeners
+// Event Listeners for Extract Button
 // ================================
 
 document
     .querySelector("#extractBtn")
     .addEventListener("click", extractAll);
+
+
+// ================================
+// Brand and State Dropdown
+// ================================
+
+const brandSelect = document.getElementById('brand');
+const stateSelect = document.getElementById('state');
+
+brandSelect.addEventListener('change', populateStates);
+
+function populateStates() {
+    const brand = brandSelect.value;
+
+    stateSelect.innerHTML = '<option value="">Select State</option>';
+
+    if (!brand || !BRANDS[brand]) {
+        stateSelect.disabled = true;
+        brandColorInput.value = '';
+        return;
+    }
+
+    stateSelect.disabled = false;
+
+    BRANDS[brand].states.forEach(state => {
+        const option = document.createElement('option');
+        option.value = state;
+        option.textContent = state;
+        stateSelect.appendChild(option);
+    });
+
+    brandColorInput.value = `style="color: ${BRANDS[brand].color};"`;
+}
+
+
+// Brand Color 
+
+const brandColorInput = document.getElementById('brand-color');
+
+
+// Final URL
+const ticketUrlInput = document.getElementById('ticket-url');
+const urlOutput = document.getElementById('url-output');
+
+brandSelect.addEventListener('change', updateUrl);
+stateSelect.addEventListener('change', updateUrl);
+
+
+function updateUrl() {
+    const brand = brandSelect.value;
+    const state = stateSelect.value;
+    const ticketUrl = ticketUrlInput.value.trim();
+
+    if (!brand || !state || !ticketUrl) {
+        urlOutput.value = '';
+        return;
+    }
+
+    let url = '';
+
+    if (brand === 'mgm') { //mgm to match on config.js
+        const domain = ['ON', 'AB'].includes(state)
+            ? 'betmgm.ca'
+            : 'betmgm.com';
+
+        url = `https://www.${state.toLowerCase()}.${domain}/en/myaccount/promotions/casino/${ticketUrl}`;
+    }
+
+    if (brand === 'borg') { //borg to match on config.js
+        if (state === 'NJ') {
+            url = `https://www.borgataonline.com/en/myaccount/promotions/casino/${ticketUrl}`;
+        } else {
+            url = `https://www.${state.toLowerCase()}.borgataonline.com/en/myaccount/promotions/casino/${ticketUrl}`;
+        }
+    }
+
+    urlOutput.value = url;
+}

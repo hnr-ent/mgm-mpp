@@ -118,3 +118,24 @@
  #url-output  {
     margin-top: 1.5rem;
 }
+
+.url-bx {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.state-brand-bx {
+    display: flex;
+    justify-content: space-evenly;
+
+    select, input {
+        border-radius: .5rem;
+    }
+
+    input {
+        border: none;
+        height: 1.8rem;
+        width: 10rem;
+    }
+}
