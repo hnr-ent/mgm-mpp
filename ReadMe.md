@@ -25,7 +25,7 @@ Compare your own work against this tool. If it matches, it's almost certainly th
 
 **JavaScript**
 - Created config.js where configuration are placed wherein logic scripts are placed in script.js
-- upper.js contains logic text into Capitalization Case.
+- upper.js contains logic of turning texts into Capitalization Case.
 
 <hr>
 
