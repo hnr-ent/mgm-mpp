@@ -1,3 +1,8 @@
+// Logic for extracting specific text into the correct input boxes. 
+
+
+
+// Preserve Words means Capitalization Words would not effect the preserved words (i.e. VIP will not be turned into Vip)
 const PRESERVE_WORDS = new Set([
     "NBA",
     "NHL",

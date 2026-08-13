@@ -1,3 +1,5 @@
+// Turns specific text in specific input boxes into Capitalization Case
+
 function toCapitalCase(text) {
     return text
         .toLowerCase()

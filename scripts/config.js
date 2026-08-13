@@ -1,3 +1,8 @@
+// Configurations for the following:
+//  PromotionTitle, PromotionTitle 2, Image, ImageHeadline, Brand and States Dropdown, and Brand Color Schemes.
+// If future works is not able to extract text for specific input boxes, the current configuration does not exist for it. 
+// Add new variation in sections and labels (ask AI for assistance) in order to accomodate new variation.
+
 const FIELD_CONFIG = {
     ticketURL: {
     output: "#ticket-url",
