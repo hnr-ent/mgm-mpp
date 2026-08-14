@@ -19,6 +19,7 @@ const PRESERVE_WORDS = new Set([
     "PA",
     "MI",
     "ON",
+    "XXX",
     "RPG",
     "RPGs"
 ]);
