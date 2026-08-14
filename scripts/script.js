@@ -206,13 +206,17 @@ function extractAll() {
         const output = document.querySelector(config.output);
 
         if (output) {
-            let finalValue = value;
+           let finalValue = value;
 
-            if (config.capitalize && finalValue) {
-                finalValue = toCapitalCase(finalValue);
-            }
+if (config.appendText && finalValue && !finalValue.endsWith(config.appendText)) {
+    finalValue += config.appendText;
+}
 
-            output.value = finalValue;
+if (config.capitalize && finalValue) {
+    finalValue = toCapitalCase(finalValue);
+}
+
+output.value = finalValue;
         }
     });
 
