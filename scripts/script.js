@@ -158,6 +158,10 @@ function extractField(lines, config) {
 
             if (!value) continue;
 
+            if (/^[^A-Za-z0-9]+$/.test(value)) {
+                continue;
+            }
+
             // Skip helper/meta lines
 
             if (
